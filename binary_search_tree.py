@@ -1,8 +1,9 @@
 from collections import deque
 
 
-# binary search tree implemented by linked list
 class Node(object):
+    """binary search tree implemented by linked list"""
+
     def __init__(self, key):
         self.key = key
         self.left = None
@@ -10,15 +11,15 @@ class Node(object):
         self.parent = None
 
 
-class BinarySearchTreeList(object):
+class BinarySearchTree(object):
     def __init__(self, root=None):
         self.root = root
 
-    # h = height of tree
-    # if we have a linked list liked tree, h = n
-    # if we have a balanced tree, h is lg(n)
-    # time O(n)
     def inorder_traversal(self, node: Node):
+        """
+        h = height of tree
+        time O(n)
+        """
         if node is not None:
             self.inorder_traversal(node.left)
             print(node.key)
@@ -45,22 +46,24 @@ class BinarySearchTreeList(object):
                 node = node.right
         return node
 
-    # time O(h)
     def min(self, node: Node):
+        """time O(h)"""
         while node is not None:
             node = node.left
         return node
 
-    # time O(h)
     def max(self, node: Node):
+        """time O(h)"""
         while node is not None:
             node = node.right
         return node
 
-    # successor of node is the node with the smallest key > node.key
-    # work on distinct and non distinct key
-    # time O(h)
     def successor(self, node: Node):
+        """
+        successor of node is the node with the smallest key > node.key
+        work on distinct and non distinct key
+        time O(h)
+        """
         # case 1: successor is min in right subtree
         while node.right is not None:
             return self.min(node.right)
@@ -140,6 +143,7 @@ class BinarySearchTreeList(object):
         # case 3: new node is parent_node.right
         else:
             parent_node.right = new
+        return new
 
     def delete(self, node: Node):
         # case 1: node has no left child, replace node with its right child, which can be None
@@ -167,9 +171,11 @@ class BinarySearchTreeList(object):
             node_successor.left = node.left
             node_successor.left.parent = node_successor
 
-    # move subtree around within binary search tree
-    # replace the subtree rooted at node u with the subtree rooted at node v
     def transplant(self, deleted_subtree_root: Node, inserted_subtree_root: Node):
+        """
+        move subtree around within binary search tree
+        replace the subtree rooted at node inserted_subtree_root with the subtree rooted at node deleted_subtree_root
+        """
         # deleted_subtree_root is root of tree
         if deleted_subtree_root.parent is None:
             self.root = inserted_subtree_root

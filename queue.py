@@ -1,5 +1,5 @@
 # queue implemented by circular array
-class QueueArray:
+class ArrayQueue:
 
     def __init__(self, length):
         self.queue = [None] * length
@@ -46,7 +46,7 @@ class Node(object):
         self.next = None
 
 
-class QueueList(object):
+class LinkedQueue(object):
     def __init__(self):
         self.head = None
         self.tail = None

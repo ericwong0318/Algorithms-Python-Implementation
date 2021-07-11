@@ -12,7 +12,7 @@ def update_height(node):
     node.height = max(height(node.left), height(node.right)) + 1
 
 
-class AVL(binary_search_tree.BinarySearchTreeList):
+class AVL(binary_search_tree.BinarySearchTree):
 
     # AVL binary search tree implementation.
     # Supports insert, find, and delete-min operations in O(lg n) time.
@@ -55,7 +55,7 @@ class AVL(binary_search_tree.BinarySearchTreeList):
 
     def insert(self, data):
         """Insert key t into this tree, modifying it in-place."""
-        node = binary_search_tree.BST.insert(self, data)
+        node = binary_search_tree.BinarySearchTree.insert(self, data)
         self.rebalance(node)
 
     def rebalance(self, node):
@@ -74,8 +74,3 @@ class AVL(binary_search_tree.BinarySearchTreeList):
                     self.right_rotate(node.right)
                     self.left_rotate(node)
             node = node.parent
-
-    def delete_min(self):
-        node, parent = binary_search_tree.BinarySearchTreeList.delete_min(self)
-        self.rebalance(parent)
-        # raise NotImplemented('AVL.delete_min')
