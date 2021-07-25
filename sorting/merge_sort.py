@@ -4,8 +4,6 @@ import math
 class MergeSort(object):
     def merge_sort(self, a: list, left: int, right: int):
         """
-        merge sort
-
         time O(n*lg(n))
         space O(n)
 

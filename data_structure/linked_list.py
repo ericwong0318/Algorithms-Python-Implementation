@@ -1,10 +1,8 @@
-class Node(object):
-
+class SinglyNode(object):
 
     def __init__(self, data=0, next_node=None):
         self.data = data
         self.next = next_node
-
 
     def __str__(self):
         return self.data
@@ -23,8 +21,8 @@ class SinglyLinkedList(object):
 
     # time O(1)
     # space O(1)
-    def insert_to_front(self, data):
-        node = Node2(data, self.head)
+    def insert_to_front(self, data) -> SinglyNode:
+        node = SinglyNode(data, self.head)
         self.head = node
         self.len += 1
         return node
@@ -32,8 +30,8 @@ class SinglyLinkedList(object):
     # insert to rear
     # time O(n) if we have rear pointer, we can achieve O(1)
     # space O(1)
-    def append(self, data):
-        node = Node(data, None)
+    def append(self, data) -> SinglyNode:
+        node = SinglyNode(data, None)
         # case 1: empty list
         if self.head is None:
             self.head = node
@@ -47,7 +45,7 @@ class SinglyLinkedList(object):
 
     # time O(n)
     # space O(1)
-    def search_list(self, key):
+    def search_list(self, key) -> SinglyNode:
         curr = self.head
         while curr is not None and curr.data != key:
             curr = curr.next
@@ -63,7 +61,7 @@ class SinglyLinkedList(object):
 
     # time O(n)
     # space O(1)
-    def delete_node(self, data):
+    def delete_node(self, data) -> any:
         # case 0: empty list
         if self.head is None:
             return None
@@ -75,17 +73,17 @@ class SinglyLinkedList(object):
         while curr is not None:
             if curr.next.data == data:
                 curr.next = curr.next.next
-                return True  #
+                return curr
             curr = curr.next
         self.len -= 1
-        return False  # add extra
+        return None  # add extra
 
-    # time O(1)
-    def delete_list(self):
+    def delete_list(self) -> None:
+        """mark it as deleted to garbage collector will take care of it"""
         del self.head
 
 
-class Node2(object):
+class DoublyNode(object):
     def __init__(self, data=0, prev_node=None, next_node=None):
         self.data = data
         self.prev = prev_node
@@ -109,7 +107,7 @@ class DoublyLinkedList(object):
     # time O(1)
     # space O(1)
     def insert_to_front(self, data):
-        node = Node2(data, None, self.head)
+        node = DoublyNode(data, None, self.head)
         if self.head is not None:
             self.head.prev = node
         self.head = node
@@ -120,7 +118,7 @@ class DoublyLinkedList(object):
     # time O(n) if we have rear pointer, we can achieve O(1)
     # space O(1)
     def append(self, data):
-        node = Node(data, None)
+        node = SinglyNode(data, None)
         # case 1: empty list
         if self.head is None:
             self.head = node

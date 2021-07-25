@@ -1,4 +1,4 @@
-from collections import deque
+import random
 
 
 class Node(object):
@@ -12,30 +12,21 @@ class Node(object):
 
 
 class BinarySearchTree(object):
+    """
+    support search, min, max, successor, insert, delete, random_build in O(h), h is height of tree
+    """
+
     def __init__(self, root=None):
         self.root = root
 
     def inorder_traversal(self, node: Node):
         """
-        h = height of tree
         time O(n)
         """
         if node is not None:
             self.inorder_traversal(node.left)
             print(node.key)
             self.inorder_traversal(node.right)
-
-    # ???
-    def breadth_first_traversal(self):
-        queue = deque()
-        queue.append(self.root)
-        while queue:
-            node = queue.popleft()
-            print(node)
-            if node.left is not None:
-                queue.append(node.left)
-            if node.right is not None:
-                queue.append(node.right)
 
     def search(self, key):
         node = self.root
@@ -47,13 +38,13 @@ class BinarySearchTree(object):
         return node
 
     def min(self, node: Node):
-        """time O(h)"""
+        """find min in subtree"""
         while node is not None:
             node = node.left
         return node
 
     def max(self, node: Node):
-        """time O(h)"""
+        """find max in subtree"""
         while node is not None:
             node = node.right
         return node
@@ -62,7 +53,6 @@ class BinarySearchTree(object):
         """
         successor of node is the node with the smallest key > node.key
         work on distinct and non distinct key
-        time O(h)
         """
         # case 1: successor is min in right subtree
         while node.right is not None:
@@ -75,51 +65,7 @@ class BinarySearchTree(object):
             parent_node = parent_node.parent
         return parent_node
 
-    # query binary search iteration
-    # def binary_search(arr, x):
-    #     low = 0
-    #     high = len(arr) - 1
-    #
-    #     while low <= high:
-    #         mid = (high + low) // 2
-    #         # case 1: search left sub-array
-    #         if x < arr[mid]:
-    #             high = mid - 1
-    #         # case 2: search right sub-array
-    #         elif x > arr[mid]:
-    #             low = mid + 1
-    #         # case 3: x == arr[mid]
-    #         else:
-    #             return mid
-    #     return None
-
-    # worst time complexity: O(h)
-    """
-    which way of write this method is good?
-    """
-
     def insert(self, key):
-        # new = Node(key)
-        # if self.root is None:
-        #     self.root = new
-        # else:
-        #     node = self.root
-        #     while True:
-        #         if key < node.key:
-        #             # Go left
-        #             if node.left is None:
-        #                 node.left = new
-        #                 new.parent = node
-        #                 break
-        #             node = node.left
-        #         else:
-        #             # Go right
-        #             if node.right is None:
-        #                 node.right = new
-        #                 new.parent = node
-        #                 break
-        #             node = node.right
-        # return new
         parent_node = None
         new = Node(key)
         node = self.root
@@ -175,6 +121,7 @@ class BinarySearchTree(object):
         """
         move subtree around within binary search tree
         replace the subtree rooted at node inserted_subtree_root with the subtree rooted at node deleted_subtree_root
+        time: O(1)
         """
         # deleted_subtree_root is root of tree
         if deleted_subtree_root.parent is None:
@@ -188,3 +135,9 @@ class BinarySearchTree(object):
         # update inserted_subtree_root.parent
         if inserted_subtree_root is not None:
             inserted_subtree_root.parent = deleted_subtree_root.parent
+
+    def random_build(self, keys: list):
+        """build binary search tree with random keys, so the expected height of the tree will be lg(n)"""
+        random.shuffle(keys)
+        for i in keys:
+            self.insert(keys[i])

@@ -62,3 +62,7 @@ class Graph:
         # from source to destination and from destination to source
         self.add_edge(source_key, destination_key, weigh)
         self.add_edge(destination_key, source_key, weigh)
+
+    def beneath_first_search(self):
+
+    def depth_first_search(self):
