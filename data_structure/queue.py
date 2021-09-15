@@ -83,3 +83,7 @@ class LinkedQueue(object):
         else:
             self.head = self.head.next
         return data
+
+
+class Queue(object):
+    pass

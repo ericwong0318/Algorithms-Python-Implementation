@@ -9,7 +9,7 @@ class QuickSort:
             self.quick_sort(a, mid + 1, right)
 
     @staticmethod
-    def partition(a: list, left: int, right: int):
+    def partition(a: list, left: int, right: int) -> int:
         """
         running time depends on partitioning is balanced or not
         O(n)
@@ -23,17 +23,17 @@ class QuickSort:
         for j in range(left, right - 1):  # right is pivot, so end point is right - 1
             if a[j] <= pivot:
                 i += 1
-                a[i] = a[j], a[j] = a[i]  # swap i, j
-        a[i + 1] = a[right], a[right] = a[i + 1]  # swap i + 1, pivot
+                a[i], a[j] = a[j], a[i]  # swap i, j
+        a[i + 1], a[right] = a[right], a[i + 1]  # swap i + 1, pivot
         return i + 1
 
-    def randomized_quicksort(self, a: list, left, right):
+    def randomized_quicksort(self, a: list, left, right) -> None:
         if left < right:
             rand_num = self.randomized_partition(a, left, right)
             self.randomized_quicksort(a, left, rand_num - 1)
             self.randomized_partition(a, rand_num + 1, right + 1)
 
-    def randomized_partition(self, a: list, left, right):
+    def randomized_partition(self, a: list, left, right) -> int:
         """
         set random element as pivot
         :param a:
@@ -42,5 +42,5 @@ class QuickSort:
         :return:
         """
         pivot = random.randint(left, right)
-        a[right] = a[pivot], a[pivot] = a[right]
+        a[right], a[pivot] = a[pivot], a[right]
         return self.partition(a, left, right)

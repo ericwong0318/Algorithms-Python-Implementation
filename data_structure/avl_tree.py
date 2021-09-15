@@ -1,23 +1,29 @@
 from binary_search_tree import BinarySearchTree as Bst, Node as Node
 
 
-def height(node) -> int:
-    if node is None:
-        return -1
-    else:
-        return node.height
-
-
-def update_height(node) -> None:
-    node.height = max(height(node.left), height(node.right)) + 1
+class AvlNode(Node):
+    def __init__(self, height=0):
+        super(AvlNode, self).__init__(Node)
+        self.height = height
 
 
 class AvlTree(Bst):
     """Supports insert operations in O(lg n) time."""
+
     def __init__(self):
         super(AvlTree, self).__init__(Bst)
 
-    def left_rotate(self, x):
+    @staticmethod
+    def height(node: AvlNode) -> int:
+        if node is None:
+            return -1
+        else:
+            return node.height
+
+    def update_height(self, n: AvlNode) -> None:
+        n.height = max(self.height(n.left), self.height(n.right)) + 1
+
+    def left_rotate(self, x: AvlNode) -> None:
         """
         x is root and y is x.right
         after left rotation, y will be the root and x will be y.left
@@ -53,10 +59,10 @@ class AvlTree(Bst):
         x.parent = y
 
         """step 4"""
-        update_height(x)
-        update_height(y)
+        self.update_height(x)
+        self.update_height(y)
 
-    def right_rotate(self, x):
+    def right_rotate(self, x: AvlNode) -> None:
         y = x.left
         x.left = y.right
         if y.left is not None:
@@ -73,34 +79,34 @@ class AvlTree(Bst):
         y.right = x
         x.parent = y
 
-        update_height(x)
-        update_height(y)
+        self.update_height(x)
+        self.update_height(y)
 
-    def insert(self, key):
+    def insert(self, key) -> None:
         """insert and modify it in-place."""
         node = Bst.insert(self, key)
         self.rebalance(node)
 
-    def rebalance(self, node: Node):
+    def rebalance(self, node: Node) -> None:
         """check balance of tree and do rotation to fix its properties"""
         while node is not None:
-            update_height(node)
-            if height(node.left) > 1 + height(node.right):
-                if height(node.left.left) >= height(node.left.right):
+            self.update_height(node)
+            if self.height(node.left) > 1 + self.height(node.right):
+                if self.height(node.left.left) >= self.height(node.left.right):
                     self.right_rotate(node)
                 # node.left.right will move to node.right
                 # if it contribute the height of node.left, then move to node.right will cause node.right too high
                 else:
                     self.left_rotate(node.left)
                     self.right_rotate(node)
-            elif height(node.right) > 1 + height(node.left):
-                if height(node.right.right) >= height(node.right.left):
+            elif self.height(node.right) > 1 + self.height(node.left):
+                if self.height(node.right.right) >= self.height(node.right.left):
                     self.left_rotate(node)
                 else:
                     self.right_rotate(node.right)
                     self.left_rotate(node)
             node = node.parent
 
-    def delete(self, node: Node):
-        Bst.delete(node)
-        self.rebalance(node)
+    def delete(self, n: Node) -> None:
+        Bst.delete(self, n)
+        self.rebalance(n)

@@ -37,13 +37,15 @@ class BinarySearchTree(object):
                 node = node.right
         return node
 
-    def min(self, node: Node):
+    @staticmethod
+    def min(node: Node):
         """find min in subtree"""
         while node is not None:
             node = node.left
         return node
 
-    def max(self, node: Node):
+    @staticmethod
+    def max(node: Node):
         """find max in subtree"""
         while node is not None:
             node = node.right
@@ -91,7 +93,7 @@ class BinarySearchTree(object):
             parent_node.right = new
         return new
 
-    def delete(self, node: Node):
+    def delete(self, node: Node) -> None:
         # case 1: node has no left child, replace node with its right child, which can be None
         if node.left is None:
             self.transplant(node, node.right)
@@ -117,7 +119,7 @@ class BinarySearchTree(object):
             node_successor.left = node.left
             node_successor.left.parent = node_successor
 
-    def transplant(self, deleted_subtree_root: Node, inserted_subtree_root: Node):
+    def transplant(self, deleted_subtree_root: Node, inserted_subtree_root: Node) -> None:
         """
         move subtree around within binary search tree
         replace the subtree rooted at node inserted_subtree_root with the subtree rooted at node deleted_subtree_root

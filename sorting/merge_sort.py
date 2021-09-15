@@ -1,7 +1,7 @@
 import math
 
 
-class MergeSort(object):
+class MergeSort:
     def merge_sort(self, a: list, left: int, right: int):
         """
         time O(n*lg(n))
@@ -19,7 +19,8 @@ class MergeSort(object):
             self.merge(a, left, mid, right)
         return a
 
-    def merge(self, a: list, left: int, mid: int, right: int):
+    @staticmethod
+    def merge(a: list, left: int, mid: int, right: int):
         # len of 2 sub arrays
         l_arr_len = mid - left + 1
         r_arr_len = right - mid

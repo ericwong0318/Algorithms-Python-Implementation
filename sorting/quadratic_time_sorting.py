@@ -20,10 +20,10 @@ class QuadraticTimeSorting(object):
     @staticmethod
     def bubble_sort(a: list) -> None:
         for i in range(0, len(a)):
-            for j in range(len(a), i + 1, -1):
+            for j in range(len(a) - 1, i, -1):
                 # if previous element < current element, swap them
                 if a[j] < a[j - 1]:
-                    a[j] = a[j - 1], a[j - 1] = a[j]
+                    a[j], a[j - 1] = a[j - 1], a[j]
 
     @staticmethod
     def selection_sort(a: list) -> None:
