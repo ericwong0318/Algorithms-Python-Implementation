@@ -1,3 +1,3 @@
-# Data Structures and Algorithm Python Implementation
+# Algorithms Python Implementation
 
 ![alt text](github-ds-algor.png?raw=true "Title")
