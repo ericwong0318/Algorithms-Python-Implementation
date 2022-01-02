@@ -18,9 +18,9 @@ class QuickSort:
         :param right:
         :return:
         """
-        pivot = a[right]
+        pivot = a[right]  # select pivot
         i = left - 1  # i start at -1
-        for j in range(left, right - 1):  # right is pivot, so end point is right - 1
+        for j in range(left, right):  # right is pivot, so end point is right - 1
             if a[j] <= pivot:
                 i += 1
                 a[i], a[j] = a[j], a[i]  # swap i, j
@@ -31,7 +31,7 @@ class QuickSort:
         if left < right:
             rand_num = self.randomized_partition(a, left, right)
             self.randomized_quicksort(a, left, rand_num - 1)
-            self.randomized_partition(a, rand_num + 1, right + 1)
+            self.randomized_quicksort(a, rand_num + 1, right)
 
     def randomized_partition(self, a: list, left, right) -> int:
         """

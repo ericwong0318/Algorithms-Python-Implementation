@@ -1,3 +1,3 @@
 # Algorithms Python Implementation
 
-![alt text](github-ds-algor.png?raw=true "Title")
+![alt text](img/github-ds-algor.png?raw=true "Title")
