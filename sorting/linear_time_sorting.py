@@ -3,8 +3,9 @@ class LinearTimeSorting(object):
     @staticmethod
     def counting_sort(a: list, k: int) -> list:
         """
-        time and space complexity are O(n + k)
-        :param a: list
+        Time and space complexity are O(n + k).
+
+        :param a: unsorted list
         :param k: max possible value of element in a
         """
         count = [0 for _ in range(k + 1)]  # index is from 0 to k
@@ -24,10 +25,11 @@ class LinearTimeSorting(object):
 
     def radix_sort(self, a: list, d: int, k: int):
         """
-        sort information that has multiple field, like date
-        worst time complexity O(d * (n + k)). When d = O(1) and k = O(n), time complexity is O(n)
-        worst space complexity O(n), because we use counting sort. O(n + 9) = O(n) when n >> 9
-        :param a: list
+        Sort information that has multiple field, like date.
+        Worst time complexity O(n * k).
+        Worst space complexity O(n), because we use counting sort. O(n + 9) = O(n) when n >> 9.
+
+        :param a: unsorted list
         :param d: max digit that elements have
         :param k: possible value of digit. k = 9 in Decimal
         :return:

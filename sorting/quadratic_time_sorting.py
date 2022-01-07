@@ -1,13 +1,14 @@
 class QuadraticTimeSorting(object):
-    """
-    time complexity:
-        average O(n**2)
-        worst O(n**2)
-    space complexity O(1)
-    """
 
     @staticmethod
     def insertion_sort(a: list) -> None:
+        """
+        Average and worst time complexities are O(n**2).
+        Space complexity is O(1).
+
+        :param a: unsorted list
+        :return: None
+        """
         for j in range(1, len(a)):
             key = a[j]  # hold value
             # find correct location i in first half sorted array
@@ -19,6 +20,13 @@ class QuadraticTimeSorting(object):
 
     @staticmethod
     def bubble_sort(a: list) -> None:
+        """
+        Average and worst time complexities are O(n**2).
+        Space complexity is O(1).
+
+        :param a: unsorted list
+        :return: None
+        """
         for i in range(0, len(a)):
             for j in range(len(a) - 1, i, -1):
                 # if previous element < current element, swap them
@@ -27,6 +35,13 @@ class QuadraticTimeSorting(object):
 
     @staticmethod
     def selection_sort(a: list) -> None:
+        """
+        Average and worst time complexities are O(n**2).
+        Space complexity is O(1).
+
+        :param a: unsorted list
+        :return: None
+        """
         if len(a) <= 1:
             return
         for i in range(len(a) - 1):

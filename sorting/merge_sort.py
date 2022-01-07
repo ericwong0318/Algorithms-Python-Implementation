@@ -1,11 +1,11 @@
 class MergeSort:
     def merge_sort(self, a: list) -> None:
         """
-        time O(n*lg(n))
-        space O(n)
+        Time complexity is ϴ(n * lg(n)).
+        Space complexity is O(n).
 
-        :param a: unsorted array
-        :return a: sorted array
+        :param a: unsorted list
+        :return: None
         """
 
         # divide
