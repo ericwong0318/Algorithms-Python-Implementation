@@ -27,11 +27,10 @@ class QuadraticTimeSorting(object):
         :param a: unsorted list
         :return: None
         """
-        for i in range(0, len(a)):
-            for j in range(len(a) - 1, i, -1):
-                # if previous element < current element, swap them
-                if a[j] < a[j - 1]:
-                    a[j], a[j - 1] = a[j - 1], a[j]
+        for i in range(len(a) - 1, 0, -1):
+            for j in range(i):  # bubble max to the tail of the list
+                if a[j] > a[j + 1]:
+                    a[j], a[j + 1] = a[j + 1], a[j]
 
     @staticmethod
     def selection_sort(a: list) -> None:
