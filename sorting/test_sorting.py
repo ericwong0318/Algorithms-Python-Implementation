@@ -61,30 +61,11 @@ class TestSorting(unittest.TestCase):
         sorted_list = [-i for i in reversed(range(10))]
         self.call_insert_bubble_select_merge_quick_sorts(unsorted_list, sorted_list)
 
-        # bubble sort
-        unsorted_list_copy = unsorted_list
-        self.bubble_sort(unsorted_list_copy)
-        self.assertEqual(sorted_list, unsorted_list_copy)
-        # insertion sort
-        unsorted_list_copy = unsorted_list
-        self.insertion_sort(unsorted_list_copy)
-        self.assertEqual(sorted_list, unsorted_list_copy)
-        # selection sort
-        unsorted_list_copy = unsorted_list
-        self.selection_sort(unsorted_list_copy)
-        self.assertEqual(sorted_list, unsorted_list_copy)
-        # merge sort
-        unsorted_list_copy = unsorted_list
-        self.merge_sort(unsorted_list_copy)
-        self.assertEqual(sorted_list, unsorted_list_copy)
-        # quicksort
-        unsorted_list_copy = unsorted_list
-        self.quicksort(unsorted_list_copy, 0, len(unsorted_list_copy) - 1)
-        self.assertEqual(sorted_list, unsorted_list_copy)
-        # randomized quicksort
-        unsorted_list_copy = unsorted_list
-        self.randomized_quicksort(unsorted_list_copy, 0, len(unsorted_list_copy) - 1)
-        self.assertEqual(sorted_list, unsorted_list_copy)
+    def test_repeating_item(self):
+        unsorted_list = [5, 5, 0, 0, 7, 7, 4, 4, 8, 8, 6, 6, 3, 3, 9, 9, 1, 1, 2, 2]
+        sorted_list = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9]
+        self.call_insert_bubble_select_merge_quick_sorts(unsorted_list, sorted_list)
+        self.call_radix_sort(unsorted_list, sorted_list)
 
 
 if __name__ == '__main__':
