@@ -1,10 +1,17 @@
+from collections import deque
 from math import sqrt, floor
 from random import randint
-from collections import deque
-from sympy import nextprime
 
 
-class CloseAddressingHashTable(object):
+def _is_prime(x):
+    return all(x % i for i in range(2, x))
+
+
+def _next_prime(x):
+    return min([a for a in range(x + 1, 2 * x) if _is_prime(a)])
+
+
+class CloseAddressingHashTable:
     """
     use deque as doubly linked list
     support insert, delete and search
@@ -35,7 +42,7 @@ class CloseAddressingHashTable(object):
             self.a = (sqrt(5) - 1) / 2
             self.h = self.multiplication_method_hashing
         else:
-            self.p = nextprime(capacity)
+            self.p = _next_prime(capacity)
             self.a = randint(1, self.p - 1)
             self.b = randint(0, self.p - 1)
             self.h = self.universal_hashing
