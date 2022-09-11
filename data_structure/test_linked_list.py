@@ -1,5 +1,5 @@
 import unittest
-from data_structure.linked_list import SinglyLinkedList, DoublyLinkedList
+from linked_list import SinglyLinkedList, DoublyLinkedList
 
 
 class TestLinkedList(unittest.TestCase):

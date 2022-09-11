@@ -59,7 +59,7 @@ class SinglyLinkedList(object):
     # space O(1)
     def search_list(self, key) -> SinglyNode:
         curr = self.head
-        while curr is not None and curr.data != key:
+        while curr and curr.data != key:
             curr = curr.next
         return curr
 
