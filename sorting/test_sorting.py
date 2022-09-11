@@ -12,74 +12,54 @@ class TestSorting(unittest.TestCase):
         self.randomized_quicksort = quicksort.QuickSort().randomized_quicksort
         self.radix_sort = linear_time_sorting.LinearTimeSorting().radix_sort
 
-    def test_normal_list(self):
-        unsorted_list = [5, 0, 7, 4, 8, 6, 3, 9, 1, 2]
-        sorted_list = [i for i in range(10)]
-
+    def call_insert_bubble_select_merge_quick_sorts(self, unsorted_list, sorted_list):
         # bubble sort
         unsorted_list_copy = unsorted_list
         self.bubble_sort(unsorted_list_copy)
-        self.assertEqual(sorted_list, unsorted_list_copy)
+        self.assertEqual(unsorted_list_copy, sorted_list)
         # insertion sort
         unsorted_list_copy = unsorted_list
         self.insertion_sort(unsorted_list_copy)
-        self.assertEqual(sorted_list, unsorted_list_copy)
+        self.assertEqual(unsorted_list_copy, sorted_list)
         # selection sort
         unsorted_list_copy = unsorted_list
         self.selection_sort(unsorted_list_copy)
-        self.assertEqual(sorted_list, unsorted_list_copy)
+        self.assertEqual(unsorted_list_copy, sorted_list)
         # merge sort
         unsorted_list_copy = unsorted_list
         self.merge_sort(unsorted_list_copy)
-        self.assertEqual(sorted_list, unsorted_list_copy)
+        self.assertEqual(unsorted_list_copy, sorted_list)
         # quicksort
         unsorted_list_copy = unsorted_list
-        self.quicksort(unsorted_list_copy, 0, len(unsorted_list_copy) - 1)
-        self.assertEqual(sorted_list, unsorted_list_copy)
+        self.quicksort(unsorted_list_copy)
+        self.assertEqual(unsorted_list_copy, sorted_list)
         # randomized quicksort
         unsorted_list_copy = unsorted_list
-        self.randomized_quicksort(unsorted_list_copy, 0, len(unsorted_list_copy) - 1)
-        self.assertEqual(sorted_list, unsorted_list_copy)
+        self.randomized_quicksort(unsorted_list_copy)
+        self.assertEqual(unsorted_list_copy, sorted_list)
+
+    def call_radix_sort(self, unsorted_list, sorted_list):
         # radix sort
         unsorted_list_copy = unsorted_list
         result = self.radix_sort(unsorted_list_copy, 1, 9)
-        self.assertEqual(sorted_list, result)
+        self.assertEqual(result, sorted_list)
+
+    def test_normal_list(self):
+        unsorted_list = [5, 0, 7, 4, 8, 6, 3, 9, 1, 2]
+        sorted_list = [i for i in range(10)]
+        self.call_insert_bubble_select_merge_quick_sorts(unsorted_list, sorted_list)
+        self.call_radix_sort(unsorted_list, sorted_list)
 
     def test_empty_list(self):
         unsorted_list = []
         sorted_list = []
-        # bubble sort
-        unsorted_list_copy = unsorted_list
-        self.bubble_sort(unsorted_list_copy)
-        self.assertEqual(sorted_list, unsorted_list_copy)
-        # insertion sort
-        unsorted_list_copy = unsorted_list
-        self.insertion_sort(unsorted_list_copy)
-        self.assertEqual(sorted_list, unsorted_list_copy)
-        # selection sort
-        unsorted_list_copy = unsorted_list
-        self.selection_sort(unsorted_list_copy)
-        self.assertEqual(sorted_list, unsorted_list_copy)
-        # merge sort
-        unsorted_list_copy = unsorted_list
-        self.merge_sort(unsorted_list_copy)
-        self.assertEqual(sorted_list, unsorted_list_copy)
-        # quicksort
-        unsorted_list_copy = unsorted_list
-        self.quicksort(unsorted_list_copy, 0, len(unsorted_list_copy) - 1)
-        self.assertEqual(sorted_list, unsorted_list_copy)
-        # randomized quicksort
-        unsorted_list_copy = unsorted_list
-        self.randomized_quicksort(unsorted_list_copy, 0, len(unsorted_list_copy) - 1)
-        self.assertEqual(sorted_list, unsorted_list_copy)
-        # radix sort
-        unsorted_list_copy = unsorted_list
-        result = self.radix_sort(unsorted_list_copy, 1, 9)
-        self.assertEqual(sorted_list, result)
+        self.call_insert_bubble_select_merge_quick_sorts(unsorted_list, sorted_list)
+        self.call_radix_sort(unsorted_list, sorted_list)
 
-    def test_negative_number_list(self):
+    def test_negative_number(self):
         unsorted_list = [-5, 0, -7, -4, -8, -6, -3, -9, -1, -2]
         sorted_list = [-i for i in reversed(range(10))]
+        self.call_insert_bubble_select_merge_quick_sorts(unsorted_list, sorted_list)
 
         # bubble sort
         unsorted_list_copy = unsorted_list
