@@ -1,4 +1,5 @@
 import unittest
+
 from linked_list import SinglyLinkedList, DoublyLinkedList
 
 
@@ -10,7 +11,7 @@ class TestLinkedList(unittest.TestCase):
     # singly linked list's test cases
     def test_singly_linked_list_insert_to_front(self):
         for i in reversed(range(10)):
-            self.sll.insert_to_front(i)
+            self.sll.insert_first(i)
         self.assertEqual([i for i in range(10)], self.sll.to_array())
 
     def test_singly_linked_list_append(self):
@@ -22,7 +23,7 @@ class TestLinkedList(unittest.TestCase):
         for i in range(10):
             self.sll.append(i)
         for i in range(10):
-            self.assertEqual(i, self.sll.search_list(i).data)
+            self.assertEqual(i, self.sll.search_list(i).item)
 
     def test_singly_linked_list_delete_node(self):
         for i in range(9):
@@ -40,7 +41,7 @@ class TestLinkedList(unittest.TestCase):
         while curr.next is not None:
             curr = curr.next
         while curr is not None:
-            nodes.append(curr.data)
+            nodes.append(curr.item)
             curr = curr.prev
         return nodes
 
@@ -60,7 +61,7 @@ class TestLinkedList(unittest.TestCase):
         for i in range(10):
             self.dll.append(i)
         for i in range(10):
-            self.assertEqual(i, self.dll.search_list(i).data)
+            self.assertEqual(i, self.dll.search_list(i).item)
 
     def test_doubly_linked_list_delete_node(self):
         for i in range(9):
@@ -71,6 +72,3 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual([j for j in range(9) if j % 2 != 0], self.dll.to_array())
         self.assertEqual([j for j in reversed(range(9)) if j % 2 != 0], self.print_list_in_revered())
 
-
-if __name__ == '__main__':
-    unittest.main()
