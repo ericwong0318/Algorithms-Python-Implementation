@@ -1,71 +1,56 @@
-# stack implemented by dynamic array ????
+from collections import deque
+
+
 class ArrayStack:
     def __init__(self):
-        self.stack = None
-
-    def size(self):
-        return len(self.stack)
+        self.items = []
 
     def is_empty(self):
-        return self.size() == 0
-
-    # time O(1)
-    # space O(1)
-    def push(self, data):
-        self.stack.append(data)
-
-    # time O(1)
-    # space O(1)
-    def pop(self):
-        if self.is_empty():  # otherwise stack underflow
-            return None
-        else:
-            return self.stack.pop()
-
-    # time O(1)
-    # space O(1)
-    def peek(self):
-        if self.is_empty():  # empty stack
-            return None
-        else:
-            return self.stack[-1]
-
-
-# stack implemented by linked list
-class Node(object):
-    def __init__(self, data, next_node=None):
-        self.data = data
-        self.next = next_node
-
-
-class LinkedStack(object):
-    def __init__(self, top=None):
-        self.top = top
-        self.size = 0
-
-    def is_empty(self):
-        return self.size == 0
+        """time complexity O(1)"""
+        return self.items == []
 
     def size(self):
-        return self.size
+        """time complexity O(1)"""
+        return len(self.items)
 
-    # time O(1)
-    # space O(1)
-    def push(self, data):
-        self.top = Node(data, self.top)
-        self.size += 1
+    def push(self, item):
+        """time complexity O(1)"""
+        self.items.append(item)
 
-    # time O(1)
-    # space O(1)
     def pop(self):
-        if self.top is None:
-            return None
-        data = self.top.data
-        self.top = self.top.next
-        self.size -= 1
-        return data
+        """time complexity O(1)"""
+        return self.items.pop()
 
-    # time O(1)
-    # space O(1)
     def peek(self):
-        return self.top if self.top is not None else None
+        """time complexity O(1)"""
+        return self.items[-1]
+
+
+class LinkedStack:
+    def __init__(self):
+        self.items = deque([])
+
+    def is_empty(self):
+        """time complexity O(n)"""
+        return self.items == deque([])
+
+    def size(self):
+        """time complexity O(1)"""
+        return len(self.items)
+
+    def push(self, item):
+        """time complexity O(1)"""
+        self.items.append(item)
+
+    def pop(self):
+        """time complexity O(1)"""
+        return self.items.pop()
+
+    def peek(self):
+        """
+        time complexity O(1).
+        self.items[-1] is fine too.
+        """
+        item = self.items.pop()
+        self.items.append(item)
+        return item
