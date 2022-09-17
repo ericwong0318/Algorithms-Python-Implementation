@@ -1,5 +1,6 @@
 import unittest
-from sorting import linear_time_sorting, merge_sort, quadratic_time_sorting, quicksort
+
+from algorithms import linear_time_sorting, merge_sort, quadratic_time_sorting, quicksort
 
 
 class TestSorting(unittest.TestCase):
