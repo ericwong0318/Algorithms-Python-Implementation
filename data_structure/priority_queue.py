@@ -79,9 +79,9 @@ class PriorityQueueHeap(_PriorityQueue):
 
     def delete_max(self):
         n, a = self.n, self.a
-        a[0], a[n - 1] = a[n - 1], a[0]  # n-1
+        a[0], a[n - 1] = a[n - 1], a[0]
         super().delete_max()
-        self.max_heapify_down(a, self.n, 0)  # note is incorrect
+        self.max_heapify_down(a, self.n, 0)
         return
 
     def max_heapify_up(self, a, n, c):
