@@ -2,13 +2,7 @@ from collections import deque
 from math import sqrt, floor
 from random import randint
 
-
-def _is_prime(x):
-    return all(x % i for i in range(2, x))
-
-
-def _next_prime(x):
-    return min([a for a in range(x + 1, 2 * x) if _is_prime(a)])
+from math_functions.math_functions import next_prime
 
 
 class CloseAddressingHashTable:
@@ -39,7 +33,7 @@ class CloseAddressingHashTable:
             self.a = (sqrt(5) - 1) / 2
             self.h = self.multiplication_method_hashing
         else:
-            self.p = _next_prime(capacity)
+            self.p = next_prime(capacity)
             self.a = randint(1, self.p - 1)
             self.b = randint(0, self.p - 1)
             self.h = self.universal_hashing
