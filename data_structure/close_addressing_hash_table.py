@@ -29,7 +29,7 @@ class CloseAddressingHashTable:
         if h == 0:
             self.h = self.division_method_hashing
         elif h == 1:
-            # The value of a is determined by researcher.
+            # a's value is determined by researcher.
             self.a = (sqrt(5) - 1) / 2
             self.h = self.multiplication_method_hashing
         else:

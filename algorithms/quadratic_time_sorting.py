@@ -11,7 +11,8 @@ class QuadraticTimeSorting(object):
         """
         for j in range(1, len(a)):
             key = a[j]  # hold value
-            # find correct location i in first half sorted array
+
+            # find and swap correct location i in first half sorted array
             i = j - 1
             while i > 0 and a[i] > key:
                 a[i + 1] = a[i]  # shift to next slot
@@ -43,12 +44,15 @@ class QuadraticTimeSorting(object):
         """
         if len(a) <= 1:
             return
+
+        # find first (n - 1)th minimum element's index
         for i in range(len(a) - 1):
             min_index = i  # minimum element's index
-            # find first (n - 1)th minimum element
+
             for j in range(i + 1, len(a)):
                 if a[j] < a[min_index]:
                     min_index = j
-            # if data[min_index] < data[i], swap them, so minimum element can go to front of array
+
+            # if data[min_index] < data[i], swap them, so minimum element can go to end of sorted array
             if a[min_index] < a[i]:
                 a[i], a[min_index] = a[min_index], a[i]
