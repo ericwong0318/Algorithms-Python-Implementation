@@ -2,25 +2,49 @@
 
 ![alt text](img/github-ds-algor.png?raw=true "Title")
 
+## Data Structures
+
+### Sequence
+
+Array Sequence
+
+Dynamic Array Sequence
+
 Linked List
 
 Stack
 
 Queue
 
-Hash
+## Priority Queue
+
+- Array
+- Sorted array
+- Heap
+
+### Hash
+
 - Open addressing hashing
 - Close addressing hashing
-- Rolling hash 
+- Rolling hash
 
-Tree
+### Tree
 
-Graph
+- Binary Search Tree
 
-Dynamic Programming
+## Algorithm
 
-Sorting
+### Sorting
+
 - Quadratic time sorting
 - Merge sort
 - Quicksort
 - Linear time sorting
+
+### Graph
+
+- DFS
+- BFS
+
+### Dynamic Programming
+
